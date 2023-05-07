@@ -1,0 +1,6 @@
+![1](images/q1-1.png)
+![2](images/q1-2.png)
+![3-1](images/q1-3-1.png)
+![3-2](images/q1-3-2.png)
+![4](images/q1-4.png)
+![5](images/q1-5.png)
