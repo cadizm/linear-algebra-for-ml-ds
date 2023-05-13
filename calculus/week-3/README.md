@@ -284,3 +284,41 @@ $$
 $$
 b \leftarrow b - \alpha (-(y - \hat y))
 $$
+
+# Classification with a Neural Network
+
+A neural network is a series of perceptrons organized in layers where the output from
+one layer is used as the input for the next layer.
+
+![2-2-1-nn](images/2-2-1-nn.png)
+
+---
+
+Minimizing log loss (training)
+
+The partial derivatives at each layer tell us how to adjust weights at each layer in
+order to minimize the log loss function.
+
+![x1-partial-derivatives](images/x1-partial-derivatives.png)
+
+$$
+\frac{\partial \mathcal{L}}{\partial w_{11}} = -x_1 w_1 a_1 (1 - a_1)(y - \hat y)
+$$
+
+$$
+w_{11} \leftarrow w_{11} - \alpha \frac{\partial \mathcal{L}}{\partial w_{11}}
+$$
+
+$$
+w_{11} \leftarrow w_{11} - \alpha - x_1 w_1 a_1 (1 - a_1)(y - \hat y)
+$$
+
+---
+
+The forward propagation step in gradient descent that begins at input layer of the neural
+network and ends at the output layer in order to calculate the output $\hat y$ whose
+error seeks to be minimized using the loss function.
+
+Forward propagation is followed by **backpropagation**, which begins at the output layer
+and ends and the input layer. Its purpose is to perform the "update step" during training,
+that is, updating the parameters in the network (the _weights_ and _biases_).
