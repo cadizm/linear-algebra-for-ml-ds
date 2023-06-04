@@ -18,7 +18,7 @@ total number of possible outcomes.
 
 An **experiment** is any process that produces an outcome that is uncertain.
 
-## Coin flip example
+## Coin Flip Example
 
 $$
 P(\text{H}) = \frac{\text{H}}{\text{H, T}} = \frac{1}{2} = \frac{1}{2} = 0.5
@@ -34,7 +34,7 @@ P(\text{HHH}) = \frac{\text{HHH}}{\text{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT}}
 = \frac{1}{8} = 0.125
 $$
 
-## Dice example
+## Dice Example
 
 $$
 P(6) = \frac{6}{1, 2, 3, 4, 5, 6} = \frac{1}{6}
@@ -47,7 +47,7 @@ $$
 The event of rolling 2 6's is 1 and the sample space of total possible rolls (outcomes)
 is 36.
 
-# Complement of event probability
+# Complement of Event Probability
 
 If an event has a probability of occurring 75%, then the complement event or the
 probability that it does not occur is 25%.
@@ -70,9 +70,9 @@ $$
 P(not \space 6) = 1 - P(6) = 1 - \frac{1}{6} = \frac{5}{6}
 $$
 
-# Sum of probabilities
+# Sum of Probabilities
 
-## Disjoint events
+## Disjoint Events
 
 At a school kids _can only play one sport_.  The probability that a kid plays soccer is 30%.
 The probability that a kid plays basketball is 40%
@@ -96,7 +96,7 @@ P(\text{even number or 5}) = P(\text{even number}) + P(5) = \frac{3}{6} + \frac{
 = \frac{4}{6} = \frac{2}{3}
 $$
 
-## Joint events
+## Joint Events
 
 At another school, kids _can play as many sports as they want_. The probability that a
 kid plays soccer is 0.6 and the probability that a kid plays basketball is 0.5.
@@ -190,7 +190,7 @@ $$
 P(\text{10 sixes}) = {\left(\frac{1}{6}\right)}^{10}
 $$
 
-## Birthday problem
+## Birthday Problem
 
 You have 30 friends at a party. What do you think is more likely:
 
@@ -212,7 +212,7 @@ $$
 Conditional probability concerns calculating the probability of an event given that
 another event has already occurred.
 
-## Coin flip example
+## Coin Flip Example
 
 What is the probability of landing heads twice given the first coin flip is heads?
 
@@ -220,7 +220,7 @@ $$
 P(HH \mid \text{1st is H}) = \frac{HH}{HH, HT} = \frac{1}{2}
 $$
 
-## Dice example
+## Dice Example
 
 What is the probability that the first die is 6 and the sum is 10?
 
@@ -278,7 +278,7 @@ $$
 P(A \mid B) = \frac{P(B \mid A) \cdot P(A)}{P(B)}
 $$
 
-## Spam example
+## Spam Example
 
 In total we have 100 emails, 20 are **actually spam**, meaning 80 are **not spam**.  Our
 initial classifier naively marks some 20% as spam since that's all we know so far.
@@ -357,3 +357,233 @@ Note that this is equivalent to using the product rules for independent events
 $$
 P(A \cap B \cap \dots \cap C) = P(A) \cdot P(B) \cdot \ldots \cdot P(C)
 $$
+
+# Random Variables
+
+Example using coin flip.
+
+$$
+\begin{matrix}
+P(H) = 0.5 & P(T) = 0.5
+\end{matrix}
+$$
+
+Let $X$ be a random variable and assign $X = 1$ when the outcome of the coin flip is
+heads and $X = 0$ when the outcome is tails. Then
+
+$$
+\begin{matrix}
+P(X = 1) = 0.5 & P(X = 0) = 0.5
+\end{matrix}
+$$
+
+Note that we do not know the value of $X$ and its value is said to be _random_. Its value
+value varies and its outcome is uncertain.
+
+---
+
+From Events to Random Variables
+
+- Let $X =$ Number of heads in 10 coin tosses
+- The possible outcomes are: ${0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}$
+- $P(H) = 0.5$
+- Repeat 500 times (# experiments)
+
+Using random variables allows us to model the whole experiment at once.
+
+## Discrete and Continuous Random Variables
+
+Discrete random variables can take a _countable_ number of values.
+
+Continuous random variables can take values on an _interval_.
+
+# Discrete Probability Distributions
+
+## Probability Mass Function
+
+![pmf](images/pmf.png)
+
+PMF:
+
+$$
+p_X(x) = P(X = x)
+$$
+
+
+# Binomial Distribution
+
+In 5 coin flips, what is the probability of landing 2 heads?
+
+- There are 10 ways to obtain 2 heads from 10 coin flips
+- $5!$ is the number of ways to arrange 5 coins (where order matters)
+- $2!$ is the number of ways to arrange 5 coins with 2 heads
+- $(5 - 2)! = 3!$ is the number of ways to arrange 5 coins with 3 Tails
+
+$$
+10 = \frac{5!}{2!(5 - 2)!} = \binom{5}{2}
+$$
+
+This is called the [Binomial coefficient](https://en.wikipedia.org/wiki/Binomial_coefficient) and it is the number of ways to get 2 heads in 5 coin flips.
+
+In general $\binom{n}{k}$, read "n choose k", counts all the _combinations_ of $k$
+elements that can be chosen from a $n$-element set.
+
+This has the following property which can be seen in the distribution since it is
+symmetrical.
+
+$$
+\binom{n}{k} = \binom{n}{n - k} = \frac{n!}{k!(n - k)!}
+$$
+
+![binomial-pmf](images/binomial-pmf.png)
+
+# Bernoulli Distribution
+
+![bernoulli](images/bernoulli.png)
+
+# Continuous Probability Distributions
+
+Call center example. What is the probability of waiting **exactly** one minute for your call to be answered?
+
+The answer is **zero**. There are simply too many values for the amount of time a call
+can take.
+
+Instead the problem needs to be restated in a fundamentally different way. What is the
+probability your call will be taken in a given window:
+
+- $P(\text{between 0 and 1 mins})$
+- $P(\text{between 1 and 2 mins})$
+- $P(\text{between 2 and 3 mins})$
+- $P(\text{between 3 and 4 mins})$
+
+The has now been restated in terms of a _discrete_ distribution where the sum of the
+probabilities is 1.
+
+We can reduce minutes to seconds, milliseconds, etc and in general increase the
+granularity infinitely resulting in a _continuous_ distribution.
+
+![discrete](images/discrete.png)
+![continuous](images/continuous.png)
+
+- Discrete
+    - Sum of heights equals 1
+- Continuous
+    - Area under the curve equals 1
+
+## Probability Density Function
+
+![pdf](images/pdf.png)
+
+PDF:
+
+$$
+f_X(x) = P(X = x) = 0 \space \forall{x}
+$$
+
+# Cumulative Distribution Function
+
+![discrete-cdf](images/discrete-cdf.png)
+![continuous-cdf](images/continuous-cdf.png)
+
+The CDF shows how much probability the variable has accumulated until a certain value.
+
+CDF:
+
+$$
+F_X(x) = P(X \le x)
+$$
+
+Properties
+
+- $0 \le F_X(x) \le 1$
+- Left "endpoint" is 0
+- Right "endpoint" is 1
+- Never decreases
+
+![pdf-cdf](images/pdf-cdf.png)
+
+# Uniform Distribution
+
+- $a$: beginning of interval
+- $b$: end of interval
+
+Probability Density Function
+
+$$
+f_X(x) = \left \lbrace
+\begin{matrix}
+\frac{1}{b - a} & a < x < b\\
+0 & x \notin (a, b) \\
+\end{matrix}
+\right.
+$$
+
+---
+
+Cumulative Density Function
+
+$$
+F_X(x) = \left \lbrace
+\begin{matrix}
+0 & x < a \\
+\frac{x - a}{b - a} & a \le x \lt b \\
+1 & b \le x
+\end{matrix}
+\right.
+$$
+
+# Normal Distribution (Gaussian Distribution)
+
+- $\mu$: mean (where curve is centered)
+- $\sigma$: standard deviation (the curve width)
+
+Probability Density Function
+
+$$
+f_X(x) = \frac{1}{\sqrt{2 \pi \sigma}} \cdot e^{-\frac{1}{2} \frac{(x - \mu)^2}{\sigma^2}}
+$$
+
+where $\frac{1}{\sqrt{2 \pi \sigma}}$ is a scaling constant.
+
+We **standardize** in order to compare variables of different magnitudes:
+
+$$
+Z = \frac{X - \mu}{\sigma}
+$$
+
+---
+
+Computing CDF is difficult and in practice it is done by computing from PDF using
+software.
+
+# Chi-Squared Distribution
+
+If $Z_1, ..., Z_k$ are independent, standard normal variables, then the sum of their
+squares is
+
+$$
+Q = \sum_{i = 1}^{k} {Z_i}^2
+$$
+
+is distributed according to the chi-squared distribution with $k$ degrees of freedom.
+This is usually denoted
+
+$$
+Q \sim \chi^2(k)
+$$
+
+A degree of freedom represents the number of random variables being summed.
+
+# Sampling from a Distribution
+
+[Inverse transform sampling](https://en.wikipedia.org/wiki/Inverse_transform_sampling)
+takes uniform samples from the CDF and can be used to generate samples at random from
+any probability distribution.
+
+# Reference
+
+- [Random variable](https://en.wikipedia.org/wiki/Random_variable)
+- [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution)
+- [Probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
+- [Probability density function](https://en.wikipedia.org/wiki/Probability_density_function)
+- [Cumulative density function](https://en.wikipedia.org/wiki/Cumulative_distribution_function)
