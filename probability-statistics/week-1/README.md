@@ -543,7 +543,7 @@ $$
 f_X(x) = \frac{1}{\sqrt{2 \pi \sigma}} \cdot e^{-\frac{1}{2} \frac{(x - \mu)^2}{\sigma^2}}
 $$
 
-where $\frac{1}{\sqrt{2 \pi \sigma}}$ is a scaling constant.
+where $\frac{1}{\sigma \sqrt{2 \pi}}$ is a scaling constant.
 
 We **standardize** in order to compare variables of different magnitudes:
 
