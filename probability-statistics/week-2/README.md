@@ -1,4 +1,4 @@
-Week 2
+# Week 2
 
 # Mean Example
 
@@ -530,3 +530,333 @@ How to assess normality (Gaussian)? Quantile-quantile (QQ) plots can be used.
 We can see in the follow QQ plot that the data is skewed.
 
 ![qq-plot](images/qq-plot.png)
+
+# Joint Distribution of Discrete Random Variables
+
+Given 2 distributions about 10 children
+
+```
+Age (years)  |  Count
+   7              3
+   8              2
+   9              4
+  10              1
+```
+
+```
+Height (in)  |  Count
+  45              1
+  46              2
+  47              2
+  48              0
+  49              3
+  50              2
+```
+
+To get the probability for each, we divide by 10
+
+```
+Age (years)  |  Probability
+   7              .3
+   8              .2
+   9              .4
+  10              .1
+```
+
+```
+Height (in)  |  Probability
+  45              .1
+  46              .2
+  47              .2
+  48               0
+  49              .3
+  50              .2
+```
+
+What is the probability that a child is 9 years old and 49 inches tall?
+
+Of the 10 children 4 are 9 years old. Of those 4, 3 are 49 inches tall. So the
+probability is $\frac{3}{10}$.
+
+Let $Age(X)$ and $Height(Y)$.
+
+$$
+p_{XY}(9, 49) = P(X = 9, Y = 49) = \frac{3}{10}
+$$
+
+In general
+
+$$
+p_{XY}(x, y) = P(X = x, Y = y)
+$$
+
+The arrangement of the dataset can make it easier to calculate the probabilities
+
+```
+     45  46  47  48  49  50
+    -----------------------
+ 7 |  1   2   0   0   0   0
+ 8 |  0   0   2   0   0   0
+ 9 |  0   0   0   0   3   1
+10 |  0   0   0   0   0   1
+```
+
+Divide by 10 to transform into a probability mass function (PMF)
+
+```
+     45        46     47   48     49     50
+    ---------------------------------------
+ 7 |  1/10   2/10      0    0      0      0
+ 8 |     0      0   2/20    0      0      0
+ 9 |     0      0      0    0   3/10   1/10
+10 |     0      0      0    0      0   1/10
+```
+
+What is the probability that a child is 8 and 48 in tall?
+
+$$
+p_{XY}(8, 48) = 0
+$$
+
+What is the probability that a child is 7 and 46 in tall?
+
+$$
+p_{XY}(7, 46) = \frac{2}{10}
+$$
+
+---
+
+Dice Examples
+
+Let $X$ be the number rolled on the 1st die. Let $Y$ be the number rolled on the 2nd
+die. The probabilities for each are $\frac{1}{6}$.
+
+Note that $X$ and $Y$ are independent.
+
+$$
+p_{XY}(X = x, Y = y) = P(x) \cdot P(y) = \frac{1}{6} \cdot \frac{1}{6} = \frac{1}{36}
+$$
+
+---
+
+Let $X$ be the number rolled on the 1st die. Let $Y$ be the sum of the 2 dice.
+
+Probability mass function for $Y$
+
+```
+     1   2   3   4   5   6
+  ------------------------
+1 |  2   3   4   5   6   7
+2 |  3   4   5   6   7   8
+3 |  4   5   6   7   8   9
+4 |  5   6   7   8   9  10
+5 |  6   7   8   9  10  11
+6 |  7   8   9  10  11  12
+```
+
+![sum-of-dice](images/sum-of-dice.png)
+
+![2-dice-pmf](images/2-dice-pmf.png)
+
+$$
+p_{XY}(3, 7) = P(X = 3, Y = 7) = \frac{1}{36}
+$$
+
+$$
+p_{XY}(1, 1) = P(X = 1, Y = 1) = 0
+$$
+
+# Joint Distribution of Continuous Random Variables
+
+Let $X$ equal the waiting time before a call is picked up (0-10 minutes). Let $Y$ equal
+the customer satisfaction rating (0-10).
+
+Note that both variables are continuous (wait time can be 1.237 minutes and rating can
+be 4.889).
+
+![continuous-scatter-plot](images/continuous-scatter-plot.png)
+
+$$
+\mathbb{E}[X] = 4.903 \text{ minutes}
+$$
+
+$$
+\mathbb{E}[X^2] = 32.561
+$$
+
+$$
+\begin{align*}
+Var(X) & = \mathbb{E}[X^2] - \mathbb{E}[X]^2 \\
+& = 32.561 - 4.903^2 \\
+& = 8.526 \\
+\end{align*}
+$$
+
+$$
+\mathbb{E}[Y] = 5.280
+$$
+
+$$
+\mathbb{E}[Y^2] = 38.037
+$$
+
+$$
+\begin{align*}
+Var(Y) & = \mathbb{E}[Y^2] - \mathbb{E}[Y]^2 \\
+& = 38.037 - 5.280^2 \\
+& = 10.163 \\
+\end{align*}
+$$
+
+# Marginal Distribution
+
+Marginal distribution is the distribution of one variable while ignoring others.
+
+The goal of marginal distributions is to reduce the dimensionality of the distribution.
+
+To find the marginal distribution over one variable, sum the probability distribution
+over all values of that variable.
+
+$$
+p_Y(y_j) = \sum_i p_{XY}(x_i, y_j)
+$$
+
+![marginal-distribution-y](images/marginal-distribution-y.png)
+
+$$
+p_X(x_i) = \sum_j p_{XY}(x_i, y_j)
+$$
+
+![marginal-distribution-x](images/marginal-distribution-x.png)
+
+---
+
+Dice Example
+
+![marginal-distribution-sum-of-dice](images/marginal-distribution-sum-of-dice.png)
+
+# Conditional Distribution
+
+If we fix a random variable to a specific value, then we are generating a conditional
+distribution.
+
+One caveat is that after **slicing** our distribution in a conditional distribution, the
+sum over the values may not be 1 (which is needed because a sum of probabilities must
+always equal 1). To fix this, we can normalize. by dividing by the row/column sum.
+
+Note that normalizing is actually the same as applying the conditional probability rule.
+
+![conditional-1](images/conditional-1.png)
+
+![conditional-2](images/conditional-2.png)
+
+In general the Discrete Conditional Distribution formula is
+
+
+$$
+p_{Y \vert X=x} = \frac{p_{XY}(x, y)}{p_X(x)}
+$$
+
+where
+
+- $p_{Y \vert X=x}$ is the Conditional PMF of $Y$
+- $p_{XY}(x, y)$ is the Joint PMF of $X$ and $Y$
+- $p_X(x)$ is the Marginal distribution of $X$
+
+---
+
+And the Continuous Conditional Distribution formula is
+
+
+$$
+f_{Y \vert X=x} = \frac{f_{XY}(x, y)}{f_X(x)}
+$$
+
+where
+
+- $f_{Y \vert X=x}$ is the Conditional PDF of $Y$
+- $f_{XY}(x, y)$ is the Joint PDF of $X$ and $Y$
+- $f_X(x)$ is the Marginal distribution of $X$
+
+# Covariance of a Dataset
+
+Consider the discrete random variables
+
+![covariance-1](images/covariance-1.png)
+![covariance-2](images/covariance-2.png)
+![covariance-3](images/covariance-3.png)
+
+$$
+Cov(X, Y) = \frac{\sum (x_i - \mu_x)(y_i - \mu_y)}{n}
+$$
+
+where subtracting by $\mu$ is done to **center** the data and dividing by $n$ is
+done to take the **average**.
+
+![covariance-4](images/covariance-4.png)
+
+- Age and height are positively correlated in the sense that age grows, height grows.
+- Age and naps per day are negatively correlated in the sense that as age grows, naps
+  per day shrinks.
+- Age and grades are not correlated in the sense that one has very little influence
+  over the other.
+
+# Covariance of a Probability Distribution
+
+![covariance-dist-1](images/covariance-dist-1.png)
+![covariance-dist-2](images/covariance-dist-2.png)
+![covariance-dist-3](images/covariance-dist-3.png)
+
+Looking at these 3 games from the perspective of each player individually, it is hard
+to differentiate them. We need to look at the covariance.
+
+- In game 1, the covariance is 1: either they both win or both lose
+- In game 2, the covariance is -1: when one wins, the other loses
+- In game 3, the covariance is 0: we cannot infer the outcome of one using another
+
+---
+
+The covariance formula we have seen before than divides by $n$ is used in the case of
+equal probabilities. If the probabilities are unequal, the more general formula is:
+
+$$
+\begin{align*}
+Cov(X, Y) & = \sum p_{XY}(x_i, y_i) (x_i - \mu_x) (y_i - \mu_y) \\
+& = \mathbb{E}[XY] - \mathbb{E}[X] \mathbb{E}[Y]
+\end{align*}
+$$
+
+# Covariance Matrix
+
+Covariance matrix has variances on the main diagonal and covariances in the remaining
+diagonals.
+
+![covariance-matrix](images/covariance-matrix.png)
+
+# Correlation Coefficient
+
+Correlation coefficient of two variables is a measure of the linear correlation between
+the two variables. It is calculated by taking the ratio of the covariance of the two
+variables and the product of their standard deviations. The result is a number between
+$[0, 1]$.
+
+- -1 means that are completely negatively correlated
+- 1 means they are completely positively correlated
+- 0 means they are completely independent
+
+Correlation coefficient is used to standardize the covariance between distributions that
+may have very different magnitudes. This can be helpful for comparisons.
+
+$$
+\begin{align*}
+\text{Correlation Coefficient} & = \frac{Cov(X, Y)}{\sigma_x \cdot \sigma_y} \\
+& = \frac{Cov(X, Y)}{\sqrt{Var(X)} \cdot \sqrt{Var(Y)}}
+\end{align*}
+$$
+
+# Multivariate Gaussian Distribution
+
+![multivariate-gaussian](images/multivariate-gaussian.png)
+
+Note that in the univariate case we work with **scalar** values and variances. In the
+multivariate case we work with **vectors** covariance matrices.
