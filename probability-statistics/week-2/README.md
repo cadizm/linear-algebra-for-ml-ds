@@ -381,7 +381,6 @@ $$
 \mathbb{E}[X^2] & = p_1 x_1^2 + p_2 x_2^2 + ... + p_n x_n^2   \tag{2nd moment} \\
 \vdots \\
 \mathbb{E}[X^k] & = p_1 x_1^k + p_2 x_2^k + ... + p_n x_n^k   \tag{kth moment} \\
-
 \end{align*}
 $$
 
