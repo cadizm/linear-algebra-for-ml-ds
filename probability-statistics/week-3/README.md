@@ -50,11 +50,13 @@ where $N$ is population size and $\mu$ is population mean. The question then is 
 estimate **sample variance** using a sample of the population?
 
 The answer is that we divide not by the population size $N$, but 1 minus the sample size
-$n$.
+$n$ (Note: in NumPy, this is equivalent to using 1 [Delta Degrees of Freedom](https://numpy.org/doc/stable/reference/generated/numpy.var.html)).
 
 $$
 Sample \space Var(x) = \frac{1}{n - 1} \sum (x - \bar{x})^2
 $$
+
+where $\bar{x}$ is the mean of the sample.
 
 # Law of Large Numbers
 
@@ -111,4 +113,174 @@ $$
 \frac{\frac{1}{n} \sum_{i=1}^n X_i - \mathbb{E}[X]}{\sigma_X} \sqrt{n} \sim \mathcal{N}(0, 1)
 $$
 
+# Maximum Likelihood Estimation (MLE) Motivation
 
+Given a number of models and a set of data, find the model that most likely produced the
+data by maximizing $P(data \vert model)$.
+
+Example: Linear Regression
+
+![mle-linear-regression](images/mle-linear-regression.png)
+
+# MLE: Bernoulli Example
+
+Coin Example
+
+We want to maximize the probability of flipping a coin 10 times and have the result be
+8 heads and 2 tails.
+
+If we can choose the probability of the coin being heads as $p$ and the probability of
+it being tails as $1 - p$, then we can write our problem as:
+
+$$
+p = P(H)
+$$
+
+$$
+\text{Likelihood} = L(p; 8H) = p^8 (1 - p)^2
+$$
+
+$$
+\begin{align*}
+\text{Log-likelihood} & = \ell(p; 8H) = \log\left( p^8 (1 - p)^2 \right) \\
+& = 8 \log(p) + 2 \log(1 - p)
+\end{align*}
+$$
+
+We take the log of the likelihood in order to simplify calculations from multiplications
+to additions.
+
+Taking the derivative with respect to $p$
+
+$$
+\frac{d}{dp} \left( 8 \log(p) + 2 \log(1 - p) \right) =
+\frac{8}{p} + \frac{2}{1 - p} (-1)
+$$
+
+Solving
+
+$$
+\frac{8}{p} + \frac{2}{1 - p} (-1) = 0
+$$
+
+$$
+\hat{p} = \frac{8}{10}
+$$
+
+---
+
+In the general case of $n$ coins and we want to choose $k$ heads (note: $iid$ denotes
+"independent and identically distributed random variables".
+
+$$
+\boldsymbol{X} = (X_1, \dots , X_n)
+$$
+
+$$
+X_i \overset{\mathrm{iid}}{\sim} Bernoulli(p)
+$$
+
+$$
+L(p; x) = P_p(X = x) = \prod_{i=1}^n p_{X_i}(x_i) = \prod_{i=1}^n p^{x_i} (1 - p)^{1 - x_i}
+$$
+
+where
+
+$$
+\text{If} \space x_i = 1, p^{[x_i]} (1 - p)^{[1 - x_i]} = p
+$$
+
+$$
+\text{If} \space x_0 = 1, p^{[x_i]} (1 - p)^{[1 - x_i]} = (1 - p)
+$$
+
+$$
+\sum_{i=1}^n x_i = \text{number of heads}
+$$
+
+$$
+n - \sum_{i=1}^n x_i = \text{number of tails}
+$$
+
+then
+
+$$
+\prod_{i=1}^n p^{x_i} (1 - p)^{1 - x_i} = p^{\left( \sum_{i=1}^n x_i \right)} (1 - p)^{\left( n - \sum_{i=1}^n x_i \right)}
+$$
+
+and log-likelihood is
+
+$$
+\begin{align*}
+\ell(p; x) & = \log \left( p^{\left( \sum_{i=1}^n x_i \right)} (1 - p)^{\left( n - \sum_{i=1}^n x_i \right)} \right) \\
+& = \left( \sum_{i=1}^n x_i \right) \log(p) + \left( n - \sum_{x=1}^n x_i \right) \log(1 - p)
+\end{align*}
+$$
+
+Take the derivative with respect to $p$ to maximize
+
+$$
+\begin{align*}
+\frac{d}{dp} \ell(p; x) & = \frac{d}{dp} \left( \left( \sum_{i=1}^n x_i \right) \log(p) + \left( n - \sum_{x=1}^n x_i \right) \log(1 - p) \right)
+\end{align*}
+$$
+
+Simplifying and solving for $0$
+
+$$
+\frac{\sum_{i=1}^n x_i}{p} + \frac{n - \sum_{i=1}^n x_i}{1 - p} (-1) = 0
+$$
+
+$$
+\hat{p} = \frac{\sum_{i=1}^n x_i}{n} = \bar{x}
+$$
+
+# MLE: Gaussian Example
+
+Given 2 observations $1, -1$
+
+![mle-gaussian](images/mle-gaussian.png)
+
+Notice the means of the distributions. We can see that the distribution with **mean**
+equal to the mean of the sample, is the distribution that generated the observations with
+the highest likelihood.
+
+Similar to mean, the distribution with **standard deviation** equal to the standard
+deviation of the of the sample is the distribution that generated the observations with
+highest likelihood.
+
+# Reading
+
+[MLE for Gaussian population](./mle-for-gaussian-population.md)
+
+# MLE: Linear Regression
+
+![linear-regression-likelihood](images/linear-regression-likelihood.png)
+
+Find the line that most likely produces points using maximum likelihood is exactly the
+same as minimizing the least squared error using linear regression.
+
+# Regularization
+
+![regularization](images/regularization.png)
+
+Even though model 3 has the smallest squared loss, we can see that it does not generalize
+well so we come up with a way to apply a **penalty** for more complicated models. In This
+case we are using $L_2 \space \text{Regularization}$ to compute a new loss that penalizes
+model 3 for its overfitting.
+
+- Model: $y = a_n x^n + a_{n-1} x^{n-1} + ... + a_1 x + a_0$
+- Log-loss: $\ell \ell$
+- $L_2$ Regularization Error: $a_n^2 + a_{n-1}^ + ... + a_1^2$
+- Regularization parameter: $\lambda$
+- Regularized error: $\ell \ell + \lambda (a_n^2 + a_{n-1}^ + ... + a_1^2)$
+
+The regularization parameter is usually used to scale the penalty lower.
+
+# Reading
+
+[Bayesian inference and MAP](./bayesian-inference-and-map.md)
+
+# Relationship between MAP, MLE, and Regularization
+
+[Video transcript](./relationship-between-map-mle-and-regularization.txt)

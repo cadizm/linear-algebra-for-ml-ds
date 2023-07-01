@@ -1,0 +1,80 @@
+Errata (excluding minor typos) for the 3rd edition of Bayesian Data Analysis.
+If you find any other errors, please e-mail to gelman@stat.columbia.edu or aki.vehtari@aalto.fi.
+
+This list was last changed on 1 February 2022.
+
+1st (2013), 2nd (2014), 3rd (2015), and 4th (2016) printing
+p. 49 the last line of the caption to Figure 2.8, "n_j = 0,1,2,\dots" -> "y_j=0,1,2,\dots"
+p. 91 the last line "$I(\hat{\theta})$" -> "$nI(\hat{\theta})$" (thanks to Huang Xinyang)
+p. 100 Exercise 4.10a refers to Table 5.2, but this should be Table 3.1 (thanks to an anonymous student)
+p. 169 and 178. Sections 7.2 and 7.3 are not badly wrong, but have some inaccuracies and unnecessary confusing multiplier -2. We recommend to read instead Vehtari, Gelman, and Gabry (2017). Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC. In Statistics and Computing, 27(5):1413-1432, https://doi.org/10.1007/s11222-016-9696-4. Preprint http://arxiv.org/abs/1507.04544
+p. 194 Exercise 5, "$p(\mu,\sigma,\phi)\propto \dot{y}^{1-\phi} p(\phi)$" -> "$p(\mu,\log\sigma,\phi)\propto \dot{y}^{1-\phi} p(\phi)$"
+p. 226 subsection #3 "Censored data" the formula for p(theta | y_obs, I), first line instead of "equals" sign should have "proportional to" sign. The third line of that equation has binomial coefficient bin(100,91). It should not be there since the inclusion variable "I" is known in this case. (thanks Mike Polyakov).
+p. 262 The quation in subsection "Deterministic methods" should not have 1/S, as w_s (the volume) times p(theta^s|y) present the probability mass for each point and thus sum to 1. (thanks Tin Nguyen)
+p. 266 Instead of importance resampling without replacement, we now recommend Pareto smoothed importance resampling with replacement. See Vehtari et al. (2019). Pareto smoothed importance sampling. arXiv:1507.02646 https://arxiv.org/abs/1507.02646.
+p. 290 line -1 (the last line on the page) "(see Section 12.1)" -> "(see Section 12.2)" (thanks Joseph P. Skudlarek)
+p. 299 line 15, "where $p_0(\theta|u)" -> "where $p_0(\theta|y)$" (thanks Huang Xinyang)
+p. 318 In subsection "Laplace's method for analytic approximation of
+integrals" the last term of the equation "approximation of E" should be |-u''(theta_0)|^{-1/2} (thanks Xiang Zhu).
+p. 324, 5th line "$\phi represents missing data" -> $\gamma$ represents missing data (thanks to Huang Xinyang)
+p. 347, 7th line from the bottom "numerically integrated over $\phi$" -> "numerically integrated over $\gamma$" (thanks to Huang Xinyang)
+p. 493, 4th last line should read sigma^2 ~ Expon(lambda^2/2), adding ^2 to sigma (thanks Alex Cooper)
+p. 494 the full conditional for 1/tau_h needs absolute value 
+signs on the expression for the mu parameter (thanks Alex Cooper)
+p. 541 line 13 "with probability \psi_h." -> "with probability \pi_h."
+p. 547 Eq 23.2 "\delta_{y_i}" -> "\delta_{y_i}(B)" (thanks Rodney Sparapani)
+p. 552 In the equation for the multinomial probabilities: "c' = 1,...,N" -> "c = 1,...,N" (thanks to Ivan Ukhov)
+p. 564 10th line from the bottom "estimates shown in Figure 23.5" -> "estimates shown in Figure 23.6" (thanks Sorin Pascu)
+
+1st (2013), 2nd (2014) and 3rd (2015) printing
+p. 89, "The model is underidentified given data y if the likelihood,"
+ p(\theta|y) -> p(y|\theta)
+p. 497, line 7: beta_j in the subscript should be beta^*_j
+p. 508, model components 4,5,6
+ k_4(s,s') -> k_4(t,t')
+ k_5(s, s') = I_{\rm weekday}(t) -> k_5(t, t') = I_{\rm weekday}(t,t')
+ where $I_{\rm weekday}(t,t')$ is an indicator variable that equals to 1 if both $t$ and $t'$ are weekdays, and 0 otherwise.
+ k_6(s, s') = I_{\rm weekend}(t) -> k_6(t, t') = I_{\rm weekend}(t,t')
+ where $I_{\rm weekend}(t,t')$ is an indicator variable that equals to 1 if both $t$ and $t'$ are Saturday or Sunday, and 0 otherwise.
+p. 508, model component 4
+ remove "(with period 365.25 to match the average length of the year)"
+p. 508, model component 8
+ \sigma_2^2 -> \sigma_8^2
+p. 548 The equation under the line "The stick-breaking representation..." is missing the equation number. In the future printings the equation number will be 23.3 and all the equation numbers after this until the end of chapter will be incremented by one (thanks Vanda Inacio).
+p. 550 1st line "From (23.2) and (23.3)...". (23.2) should refer to the currently unnumebered stick-breaking equation on page 548 (see above) (23.3) refers to the correct equation. In the future printings the equation numbers will be fixed and this will be "From (23.3) and (23.4)..." (thanks Vanda Inacio).
+
+1st (2013) and 2nd (2014) printing
+p. 22, top line
+ "$|J|$ is the determinant" should be "$|J|$ is the absolute value of the determinant"
+p. 94,  7th line
+ "estimate \theta y" should be "estimate \hat{\theta}(y)"
+p. 134, Ex. 2 first line
+ "with known model parameters" should "with unknown model parameters"
+p. 151, 14th line from bottom is missing a parentheses
+ "Pr(T(y^{rep}>T(Y)|y)" should be "Pr(T(y^{rep})>T(Y)|y)"
+p. 173, 14th line
+ "widely available" should be "widely applicable"
+Chapter 21, p. 501, 503, 505, 506, 508, 511, 513, 514,
+ To follow the more generally used definition, in all squared exponential covariance function equations, the denominator should be "2l^2" instead of "l^2".
+p. 266, 8th line
+ the normalized weights equation should not have the multiplier S (the normalized weights should sum to one).
+p. 545 the second equation (thanks to Saisandeep Satyavolu)
+   \frac{ \prod_{h=1}^k \Gamma( a_h ) }{ \Gamma\Big( \sum_{h=1}^k a_h \Big) }
+   ->
+   \frac{ \Gamma\Big( \sum_{h=1}^k a_h \Big) }{ \prod_{h=1}^k \Gamma( a_h ) }
+p. 550 (thanks to Saisandeep Satyavolu)
+   The first customer sits at a table with dish $\theta_1^*$.  The second customer sits at the first table with probability $\frac{\alpha}{1+\alpha}$ or a new table with probability $\frac{1}{1+\alpha}$.  This process continues with the $i$th customer sitting at an occupied table with probability proportional to the number of previous customers at that table and sitting at a new table with probability proportional to $\alpha$.
+   ->
+   The first customer sits at a table with dish $\theta_1^*$.  The second customer sits at the first table with probability $\frac{1}{1+\alpha}$ or a new table with probability $\frac{\alpha}{1+\alpha}$.  This process continues with the $i$th customer sitting at an occupied table with probability $\frac{c_j}{n-i+\alpha}$, where $c_j$ is the number of previous customers at that table, and sitting at a new table with probability $\frac{\alpha}{n-i+\alpha}$.
+References
+ - "Alpert, M., and Raiffa, H. (1984)" should be "Alpert, M., and Raiffa, H. (1982)"
+ - "Brooks, S. P., and Guidici, P. (2000)" should be "Brooks, S. P., and Giudici, P. (2000)"
+ - "Denison, D. G. T., Holmes, C. C., Malick, B. K., and Smith, A. F. M. (2002)"  should be "Denison, D. G. T., Holmes, C. C., Mallick, B. K., and Smith, A. F. M. (2002)"
+ - "Gelman, A. (2013b).  Understanding posterior p-values." is now "Gelman, A. (2013b).  Two simple examples for understanding posterior p-values whose distributions are far from uniform."
+ - "Gelman, A., Van Mechelen, I., Verbecke, G., Heitjan, D. F., and Meulders, M. (2005)" should be "Gelman, A., Van Mechelen, I., Verbeke, G., Heitjan, D. F., and Meulders, M. (2005)"
+ - "Hoffman, M., and Gelman, A. (2013)" is now "Hoffman, M., and Gelman, A. (2014)"
+ - "Kong, A., Liu, J. S., and Wong, W. H. (1996)" should be "Kong, A., Liu, J. S., and Wong, W. H. (1994)"
+ - "Riihimaki, J., and Vehtari, A. (2013)." is now "Riihimaki, J., and Vehtari, A. (2014). Laplace approximation for logistic Gaussian process density estimation and regression. Bayesian Analysis, 9, 425--448."
+ - "Shen, X., and Wasserman, L. (2000)" should be "Shen, X., and Wasserman, L. (2001)"
+ - "Shirley, K., and Gelman, A. (2012)" is now "Shirley, K., and Gelman, A. (2014).  Hierarchical models for estimating state and demographic trends in U.S. death penalty public opinion.  Journal of the Royal Statistical Society A"
+

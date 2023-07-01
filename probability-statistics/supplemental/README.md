@@ -1,0 +1,6 @@
+- [Discrete Distributions](discrete-distributions.pdf)
+- [Probability & Markets](probability-and-markets.pdf)
+- [Proof that the Mean Minimizes the Mean Absolute Deviation](proof-the-median-minimizes.pdf)
+- [All of Statistics - Springer](https://www.google.com.ar/books/edition/All_of_Statistics/th3fbFI1DaMC?hl=en&gbpv=1&kptab=overview)
+- [Beta distribution](https://en.wikipedia.org/wiki/Beta_distribution)
+- [The Beta distribution Serrano Academy](https://www.youtube.com/watch?v=juF3r12nM5A)
