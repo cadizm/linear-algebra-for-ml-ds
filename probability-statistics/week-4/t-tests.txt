@@ -1,0 +1,47 @@
+Consider again your sample
+consisting of the heights of ten 18 year olds with
+the mean 68.442 and the three sets of hypothesis that we
+talked about in the previous videos. In the example from the previous videos,
+you knew that you had ten samples and that the population standard
+deviation was three. What this meant is that if zero is true,
+then the sample mean distributes normally with a mean of 66.7 and a standard
+deviation of 3 over square root 10. The difference now is that
+you don't know sigma, which in turn affects
+the distribution of the data. It's no longer this normal one over here,
+so what can you do now? Well, if you remember
+from the previous lesson, we introduced the t statistic which
+was used in cases just like this one. The small drawback is that all the
+computations will have to be made in terms of the t statistics rather
+than the sample mean directly. So instead of plotting
+the distributions around 66.7, you will need to draw them around zero. Under H0, this t statistic follows
+a t distribution with nine degrees of freedom and this is corresponding PDF. The goal now is to repeat the three
+tests using the t statistic instead. Let's begin by considering
+the right tail test for the mean of the Gaussian
+distribution with a known sigma. The data now is n = 10,
+sample mean of 68.442 and we need to add the sample variance
+which when we calculated is 3.113, the observed t statistic is then 1.71. To get the p value for this test,
+you want the probability that the t statistic is greater than
+1.771 given that H0 is true, this is the shaded area which
+has a probability of 0.0552. Since this value is greater than 0.05,
+you should not reject H0. This is the exact opposite result you
+got from the right tail test when sigma was known. This has to do with the uncertainty added
+from not knowing the sample variance. Suddenly, the evidence you had
+was not enough to reject H0. Now let's repeat the process for
+the two tail tests. The p value is now the probability
+that the t statistic is an absolute value greater than your observed data. In this case, the observed statistic
+is positive, so it's correct. In the general case, you would need to add
+an absolute value in case the observed statistic is negative, you now need
+to include the left tail because now you're looking at absolute values,
+this gives the probability of 0.1103. Notice that once again this is double the
+p value you had for the right tail test. This p value is greater than 0.5, so
+the conclusion is again do not reject H0. And finally consider the left tail test,
+so let's consider again that the sample you
+had achieved has an average of 64.252. Also imagine that the sample standard
+deviation remain the same and in this case the observed value for
+the statistic is -2.487. In the case of a left tail test,
+the p value is the probability that the t statistic is less than the observed
+value -2.487 given that H0 is true, and that is this shaded area over here
+which gives a probability of 0.0173. For this sample,
+you obtain a p value smaller than 0.05, so the correct conclusion is
+that you should reject H0 and accept the hypothesis that
+the population mean has reduced.

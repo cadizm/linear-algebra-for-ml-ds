@@ -1,0 +1,6 @@
+![two-sample-test-for-proportions-01](images/two-sample-test-for-proportions-01.png)
+![two-sample-test-for-proportions-02](images/two-sample-test-for-proportions-02.png)
+![two-sample-test-for-proportions-03](images/two-sample-test-for-proportions-03.png)
+![two-sample-test-for-proportions-04](images/two-sample-test-for-proportions-04.png)
+![two-sample-test-for-proportions-05](images/two-sample-test-for-proportions-05.png)
+![two-sample-test-for-proportions-06](images/two-sample-test-for-proportions-06.png)

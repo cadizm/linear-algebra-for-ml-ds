@@ -1,0 +1,5 @@
+![test-for-proportions-01](images/test-for-proportions-01.png)
+![test-for-proportions-02](images/test-for-proportions-02.png)
+![test-for-proportions-03](images/test-for-proportions-03.png)
+![test-for-proportions-04](images/test-for-proportions-04.png)
+![test-for-proportions-05](images/test-for-proportions-05.png)
